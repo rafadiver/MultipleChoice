@@ -18,8 +18,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblCorrectOrWrongLABEL: UILabel!
     @IBOutlet weak var lblResetLABEL: UIButton!
     
+  
+    var listOfQuestions : [String] = ["Which is not a prime color" ,
+                                      "63 / 9  = ?",
+                                      " Computer Science is ?   ",
+                                      " Chich has more cafeine ?   "]
     
     
+    var listOfChoices : [[String]] = [["Blue","Green","Yellow","Red"],["7","8","7.5","6.8"],["Stupid","Boring","Awesome","Useless"],["Green Tea","Black tea","White tea","oolong Tea"]
+                                      ]
+    
+    
+    var listOfCorrectAnswer : [String] = ["Green","7","Awesome","Black tea"]
+    
+    var hasBeenAnswer : [Bool] = [false,false,false,false]
+    
+    var questionNumber : Int?
+    let maxScore : Int = 0
+    var currentQuestion : String?
+    var correctAnswer : String?
+    
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -42,6 +62,50 @@ class ViewController: UIViewController {
     }
     @IBAction func pressRessetButton(_ sender: UIButton) {
     }
+    
+    
+    
+    func setQuestionNumber(){
+        //random number
+    }
+    
+    
+    func setQuestionAndAnswer(){
+        //
+    }
+    
+    
+    func setChoices(){
+    }
+    
+    
+    
+    func checkIfCorrect(userAnswer : String){
+    }
+    
+    
+    
+    func checkIfEndGame(){
+    }
+    
+    
+    func InitiateEndGameSequence(){
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
