@@ -44,7 +44,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setQuestionNumber()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,16 +56,34 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pressButton1(_ sender: UIButton) {
+        checkIfCorrect(userAnswer: listOfChoices[questionNumber!][0])
     }
 
     @IBAction func pressButton2(_ sender: UIButton) {
+        checkIfCorrect(userAnswer: listOfChoices[questionNumber!][1])
     }
     @IBAction func prssButton3(_ sender: UIButton) {
+        checkIfCorrect(userAnswer: listOfChoices[questionNumber!][2])
     }
     
     @IBAction func pressButton4(_ sender: UIButton) {
+        checkIfCorrect(userAnswer: listOfChoices[questionNumber!][3])
     }
     @IBAction func pressRessetButton(_ sender: UIButton) {
+        score = 0
+        
+        for index in 0..<hasBeenAnswer.count{
+            hasBeenAnswer[index] = false
+        
+        }
+        
+        lblChoice1LABEL.isEnabled = true
+        lblChoice2LABEL.isEnabled = true
+        lblChoice3LABEL.isEnabled = true
+        lblChoice4LABEL.isEnabled = true
+        setQuestionNumber()
+        lblCorrectOrWrongLABEL.text = "correct?"
+        lblCorrectOrWrongLABEL.backgroundColor = UIColor.white
     }
     
     
@@ -106,7 +127,8 @@ class ViewController: UIViewController {
         
             
         }
-    }
+    checkIfEndGame()
+        }
     
     
     
