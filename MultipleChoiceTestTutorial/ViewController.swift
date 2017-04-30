@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     var hasBeenAnswer : [Bool] = [false,false,false,false]
     
     var questionNumber : Int?
+    var score = 0
     let maxScore : Int = 0
     var currentQuestion : String?
     var correctAnswer : String?
@@ -67,30 +68,74 @@ class ViewController: UIViewController {
     
     
     func setQuestionNumber(){
-        //random number
+        questionNumber = Int(arc4random_uniform(UInt32(listOfQuestions.count)))
+        if (hasBeenAnswer[questionNumber!] == true){
+            setQuestionNumber()
+        }
+        setQuestionAndAnswer()
+        setChoices()
     }
     
     
     func setQuestionAndAnswer(){
-        //
+        currentQuestion = listOfQuestions[questionNumber!]
+        lblQuestionLABEL.text = currentQuestion
+        correctAnswer = listOfCorrectAnswer[questionNumber!]
     }
     
     
     func setChoices(){
+        lblChoice1LABEL.setTitle(listOfChoices[questionNumber!][0], for: UIControlState.normal)
+        lblChoice2LABEL.setTitle(listOfChoices[questionNumber!][1], for: UIControlState.normal)
+        lblChoice3LABEL.setTitle(listOfChoices[questionNumber!][2], for: UIControlState.normal)
+        lblChoice4LABEL.setTitle(listOfChoices[questionNumber!][3], for: UIControlState.normal)
+        
     }
     
     
     
     func checkIfCorrect(userAnswer : String){
+        hasBeenAnswer[questionNumber!] = true
+        if (userAnswer == correctAnswer){
+            score += 1
+            lblCorrectOrWrongLABEL.text = " correct plus 1 point"
+            lblCorrectOrWrongLABEL.backgroundColor = UIColor.green
+        } else {
+            lblCorrectOrWrongLABEL.text = " wrong nice try"
+            lblCorrectOrWrongLABEL.backgroundColor = UIColor.red
+        
+            
+        }
     }
     
     
     
     func checkIfEndGame(){
+        
+        var allAnswer : Bool = true
+        for index in 0..<hasBeenAnswer.count{
+            
+            if (hasBeenAnswer[index] == false) {
+            allAnswer = false
+            }
+            
+        }
+        if (allAnswer == true){
+        InitiateEndGameSequence()
+        } else {
+        setQuestionNumber()
+            
+        }
     }
     
     
     func InitiateEndGameSequence(){
+        lblQuestionLABEL.text = " game over " + String(score) + "/" + String(maxScore) + "points"
+        lblChoice1LABEL.isEnabled = false
+        lblChoice2LABEL.isEnabled = false
+        lblChoice3LABEL.isEnabled = false
+        lblChoice4LABEL.isEnabled = false
+    
     }
     
     
